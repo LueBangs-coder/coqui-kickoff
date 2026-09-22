@@ -14,6 +14,7 @@ export class CoquiAudioEngine {
   private musicGain?: GainNode
   private recordedMusic?: AudioBuffer
   private musicRequested = false
+  private musicActive = false
   private stadiumActive = false
   private listening = false
   private speaking = false
@@ -115,12 +116,28 @@ export class CoquiAudioEngine {
     this.tone(1046.5, 0.24, 0.34, 0.075, 'sine')
   }
 
+  startMusic(): void {
+    this.musicActive = true
+    const context = this.ensureContext()
+    if (!context || !this.master) return
+    this.loadRecordedMusic(context)
+    this.startMusicSource(context)
+    this.applyMix()
+  }
+
+  pauseMusic(): void {
+    this.musicActive = false
+    this.music?.stop()
+    this.music = undefined
+    this.musicGain = undefined
+  }
+
   startStadium(): void {
+    this.stadiumActive = true
+    this.startMusic()
     const context = this.ensureContext()
     if (!context || !this.master) return
     const settings = loadAudioSettings()
-    this.stadiumActive = true
-    this.loadRecordedMusic(context)
     if (!this.crowdSource) {
       const seconds = 4
       const buffer = context.createBuffer(1, context.sampleRate * seconds, context.sampleRate)
@@ -145,7 +162,6 @@ export class CoquiAudioEngine {
       this.crowdGain = gain
       source.onended = () => { source.disconnect(); filter.disconnect(); gain.disconnect() }
     }
-    this.startMusic(context)
     this.applyMix()
   }
 
@@ -158,16 +174,16 @@ export class CoquiAudioEngine {
       .then(bytes => context.decodeAudioData(bytes))
       .then(buffer => {
         this.recordedMusic = buffer
-        if (!this.stadiumActive) return
+        if (!this.musicActive) return
         this.music?.stop()
         this.music = undefined
-        this.startMusic(context)
+        this.startMusicSource(context)
         this.applyMix()
       })
       .catch(() => { /* The original retro loop remains available offline. */ })
   }
 
-  private startMusic(context: AudioContext): void {
+  private startMusicSource(context: AudioContext): void {
     if (!this.music && this.master) {
       if (!this.musicBuffer) {
         const samples = createStadiumMusic()
@@ -188,9 +204,6 @@ export class CoquiAudioEngine {
 
   pauseStadium(): void {
     this.stadiumActive = false
-    this.music?.stop()
-    this.music = undefined
-    this.musicGain = undefined
     this.crowdSource?.stop()
     this.crowdSource = undefined
     this.crowdGain = undefined

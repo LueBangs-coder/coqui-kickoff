@@ -175,8 +175,34 @@ img {
   padding: 10px;
   color: #65736c;
 }
-.sound-button[aria-pressed="true"] {
+.sound-button {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px;
+  border: 1px solid #bcc9bc;
+  border-radius: 999px;
+  background: #edf2e9;
+  color: var(--green);
+}
+.sound-button span {
+  display: grid;
+  text-align: left;
+  font-family: "Barlow Condensed", sans-serif;
+  line-height: 1;
+}
+.sound-button small {
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+.sound-button strong {
+  font-size: 13px;
+}
+.sound-button[aria-pressed="false"] {
   color: #a04f2d;
+  background: #fff0e8;
+  border-color: #d7aa96;
 }
 .hero-heading {
   display: flex;
@@ -1458,6 +1484,13 @@ img {
   .about-button {
     padding: 6px;
   }
+  .sound-button {
+    gap: 5px;
+    padding: 5px 7px;
+  }
+  .sound-button small {
+    display: none;
+  }
   .header-inner nav button {
     font-size: 17px;
     gap: 7px;
@@ -1827,6 +1860,9 @@ img {
     font-size: 15px;
     gap: 4px;
     min-height: 44px;
+  }
+  .header-inner > .about-button:not(.sound-button) {
+    display: none;
   }
   .training-panel h2 {
     font-size: 36px;

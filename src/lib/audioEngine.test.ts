@@ -65,7 +65,20 @@ function audioBrowser() {
 afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals() })
 
 describe('stadium audio lifecycle', () => {
-  it('cancels pending team calls and all sources when the game pauses', () => {
+  it('keeps the app soundtrack playing when stadium effects stop', () => {
+    audioBrowser()
+    const engine = new CoquiAudioEngine()
+    engine.startMusic()
+    const music = FakeContext.sources[0]
+    engine.startStadium()
+    const crowd = FakeContext.sources[1]
+    engine.stopStadium()
+    expect(music.loop).toBe(true)
+    expect(music.stop).not.toHaveBeenCalled()
+    expect(crowd.stop).toHaveBeenCalledOnce()
+  })
+
+  it('cancels pending team calls and stadium sources when the game pauses', () => {
     const speech = audioBrowser()
     const engine = new CoquiAudioEngine()
     engine.startStadium()
@@ -74,7 +87,8 @@ describe('stadium audio lifecycle', () => {
     engine.pauseStadium()
     vi.runAllTimers()
     expect(speech.speak).not.toHaveBeenCalled()
-    expect(FakeContext.sources.every(source => source.stop.mock.calls.length === 1)).toBe(true)
+    expect(FakeContext.sources[0].stop).not.toHaveBeenCalled()
+    expect(FakeContext.sources.slice(1).every(source => source.stop.mock.calls.length === 1)).toBe(true)
   })
   it('announces the chosen team and responds to the global mute event', () => {
     const speech = audioBrowser()
@@ -90,7 +104,7 @@ describe('stadium audio lifecycle', () => {
     expect(speech.speak).toHaveBeenCalledOnce()
     engine.stopStadium()
   })
-  it('does not restart music if its download finishes after leaving the game', async () => {
+  it('keeps the soundtrack active if its download finishes after leaving the game', async () => {
     audioBrowser()
     let deliver!: (response: unknown) => void
     vi.stubGlobal('fetch', vi.fn(() => new Promise(resolve => { deliver = resolve })))
@@ -100,11 +114,14 @@ describe('stadium audio lifecycle', () => {
     const sources = FakeContext.sources.length
     deliver({ ok: true, arrayBuffer: async () => new ArrayBuffer(0) })
     await vi.runAllTimersAsync()
-    expect(FakeContext.sources).toHaveLength(sources)
+    expect(FakeContext.sources).toHaveLength(sources + 1)
+    expect(FakeContext.sources[0].stop).toHaveBeenCalledOnce()
+    expect(FakeContext.sources.at(-1)?.stop).not.toHaveBeenCalled()
     engine.startStadium()
     expect(FakeContext.sources).toHaveLength(sources + 2)
     expect(fetch).toHaveBeenCalledOnce()
     engine.stopStadium()
+    expect(FakeContext.sources.at(-2)?.stop).not.toHaveBeenCalled()
   })
   it('disables team calls independently of music', () => {
     const speech = audioBrowser()

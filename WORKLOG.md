@@ -6,7 +6,8 @@
 
 - Seven beginner lessons, 42 phrases, 84 core answer prompts, 45 bundled Puerto Rican Spanish clips, local progress and repeatable spaced reviews.
 - Unlimited football with all 30 active 1997 teams, including Giants, and any different opponent. Three-return challenge; six points per touchdown. A persistent scoreboard shows points, touchdowns, and return count.
-- Bundled original Eleven Music v2.5 instrumental salsa track, synthesized crowd and event effects, and device-voice commentary naming the selected team. Mute, volume, and individual music/crowd/commentary controls. Pausing or leaving cancels audio and pending calls.
+- Bundled original Eleven Music v2.5 instrumental salsa track, synthesized crowd and event effects, and device-voice commentary naming the selected team. Mute, volume, and individual music/crowd/commentary controls. Pausing or leaving football cancels stadium effects and pending calls.
+- Soundtrack follow-up: music is enabled on the opening page and continues through lessons and football. The app attempts playback immediately and retries on the first tap or keypress for browser autoplay policies. A labeled Sound On/Off header control replaces the ambiguous icon-only control. Stadium effects and commentary still stop on pause/exit without stopping the app soundtrack.
 - Public source authorized with Luis Betancourt attribution only. Publication excludes personal documents, contacts, credentials, local paths, and earlier private Git history. Earlier local history remains preserved separately.
 
 ## Validation and release evidence

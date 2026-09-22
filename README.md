@@ -44,7 +44,7 @@ Best use: open the deployed HTTPS link on your phone. Use the install control on
 
 ## Game audio and scoreboard
 
-The scoreboard shows both teams, points, touchdowns, and the current return. Each touchdown earns six points; this is a three-return arcade challenge, so the defending team does not run an offense. Music, synthesized crowd reactions, tackle/touchdown effects, and team-name commentary start after a user interaction. Mute, volume, music, crowd, and commentary preferences persist locally. Pausing, switching away, and leaving the game stop stadium audio and pending calls. The global game-sound mute leaves requested Spanish pronunciation playback available.
+The scoreboard shows both teams, points, touchdowns, and the current return. Each touchdown earns six points; this is a three-return arcade challenge, so the defending team does not run an offense. The salsa soundtrack loads on the opening page, continues through lessons and football, and is enabled by default. The app attempts playback immediately; browsers that block audible autoplay start it on the learner's first tap or keypress. The labeled Sound On/Off control is always in the header. Mute, volume, music, crowd, and commentary preferences persist locally. Pausing or leaving football stops stadium effects and pending calls while the soundtrack continues; switching away from the browser pauses music until the page is active again. The global sound mute leaves requested Spanish pronunciation playback available.
 
 Commentary uses an available English device voice and says the selected team's name, including “The New York Giants score a touchdown!” It is not a recording or clone of John Madden. Device voices may need network access. See [audio sources and limits](docs/AUDIO.md).
 

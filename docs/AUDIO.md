@@ -58,7 +58,12 @@ It decodes successfully; measured peak is -0.7 dBFS. These are file-integrity
 checks, not a claim of human musical or cultural review. The production service
 worker includes the music in offline storage. Playback uses the same-origin
 file and requires no ElevenLabs account, credentials, or paid API at runtime.
-The track loops during football; a short excerpt rewards correct answers.
+The track loads on the opening page and loops continuously through the learning
+and football screens; a short excerpt rewards correct answers. Sound is enabled
+by default and a labeled header control turns app music and game sounds on or
+off. The app attempts playback at page entry. Because mobile and desktop browsers
+can block audible autoplay, the first tap or keypress also starts or resumes the
+track. Hiding the page pauses music; returning to it resumes playback.
 An original procedural retro loop/jingle remains as a fallback while loading or
 when decoding fails. Independent music and crowd switches, volume, and mute are
 available. Audio starts through a learner interaction, stops on pause/exit, and

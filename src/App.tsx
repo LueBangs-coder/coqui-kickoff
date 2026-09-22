@@ -99,10 +99,32 @@ export default function App() {
     window.addEventListener(AUDIO_SETTINGS_EVENT, onAudioSettings);
     return () => window.removeEventListener(AUDIO_SETTINGS_EVENT, onAudioSettings);
   }, []);
+  useEffect(() => {
+    const startSoundtrack = () => {
+      if (!loadAudioSettings().muted) coquiAudio.startMusic();
+    };
+    const followVisibility = () => {
+      if (document.hidden) coquiAudio.pauseMusic();
+      else startSoundtrack();
+    };
+    // Audible autoplay is browser-controlled. Try immediately, then resume on
+    // the learner's first tap or keypress when the browser requires a gesture.
+    startSoundtrack();
+    window.addEventListener("pointerdown", startSoundtrack, true);
+    window.addEventListener("keydown", startSoundtrack, true);
+    document.addEventListener("visibilitychange", followVisibility);
+    return () => {
+      window.removeEventListener("pointerdown", startSoundtrack, true);
+      window.removeEventListener("keydown", startSoundtrack, true);
+      document.removeEventListener("visibilitychange", followVisibility);
+      coquiAudio.pauseMusic();
+    };
+  }, []);
   function toggleAudio() {
     const next = saveAudioSettings({ ...audioSettings, muted: !audioSettings.muted });
     setAudioSettings(next);
     coquiAudio.applyMix();
+    if (!next.muted) coquiAudio.startMusic();
   }
   function navigate(next: Page) {
     setPage(next);
@@ -124,6 +146,7 @@ export default function App() {
   }
   async function startGame() {
     if (launching.current) return;
+    coquiAudio.startMusic();
     launching.current = true;
     setGameLoading(true);
     setNotice("");
@@ -193,11 +216,12 @@ export default function App() {
           <Flag />
           <button
             className="about-button sound-button"
-            aria-label={audioSettings.muted ? "Turn music and game sounds on" : "Mute music and game sounds"}
-            aria-pressed={audioSettings.muted}
+            aria-label={audioSettings.muted ? "Sound is off. Turn app sound on" : "Sound is on. Turn app sound off"}
+            aria-pressed={!audioSettings.muted}
             onClick={toggleAudio}
           >
             {audioSettings.muted ? <VolumeX size={21} /> : <Volume2 size={21} />}
+            <span><small>SOUND</small><strong>{audioSettings.muted ? "OFF" : "ON"}</strong></span>
           </button>
           <button
             className="about-button"

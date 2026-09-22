@@ -16,7 +16,7 @@ npm run dev
 npm run check
 ```
 
-`npm run build` creates `dist/` and its content-versioned offline service worker. `npm run preview` serves the production build locally. `npm run deploy` checks the app, then deploys the static build to the Cloudflare Pages project configured in `wrangler.jsonc` using the operator's Wrangler login. Production branch is `main`. Use the Pages command in the package script; `wrangler deploy` targets Workers and would reintroduce the account's Workers hostname.
+`npm run build` creates `dist/` and its content-versioned offline service worker. `npm run preview` serves the production build locally. Pull requests must pass the privacy scan, tests, TypeScript build, and production build. A merge to protected `main` deploys that same verified `dist/` artifact to the `coqui-kickoff` Cloudflare Pages project through GitHub Actions. `npm run deploy` remains the owner-recovery path using the operator's Wrangler login. Use the Pages command in the package script; `wrangler deploy` targets Workers and would reintroduce the account's Workers hostname.
 
 ## Learning
 
@@ -57,4 +57,4 @@ Commentary uses an available English device voice and says the selected team's n
 - `public/assets/`: original artwork; `docs/design/`: design reference.
 - `WORKLOG.md`: current release evidence and remaining gates.
 
-Created by Luis Betancourt. [Public source](https://github.com/LueBangs-coder/coqui-kickoff). GitHub Actions runs the privacy check, unit tests, and production build; deployment is a separate operator-run step. Current release evidence is recorded in WORKLOG.md. Public visibility does not grant a general redistribution license; see LICENSE and the third-party notices.
+Created by Luis Betancourt. [Public source](https://github.com/LueBangs-coder/coqui-kickoff). GitHub Actions validates pull requests and deploys the verified build after merge to `main`. Current release evidence is recorded in WORKLOG.md. Public visibility does not grant a general redistribution license; see LICENSE and the third-party notices.

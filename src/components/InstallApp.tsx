@@ -19,6 +19,7 @@ export default function InstallApp() {
   const [installing, setInstalling] = useState(false);
   const [installMessage, setInstallMessage] = useState("");
   const [updateReady, setUpdateReady] = useState(false);
+  const [waitingWorker, setWaitingWorker] = useState<ServiceWorker | null>(null);
   const [savingFailed, setSavingFailed] = useState(false);
   const supported =
     import.meta.env.PROD &&
@@ -91,12 +92,12 @@ export default function InstallApp() {
           if (!active) return;
           checkCache();
           const detectWaiting = () => {
-            if (active)
-              setUpdateReady(
-                Boolean(
-                  registration.waiting && navigator.serviceWorker.controller,
-                ),
-              );
+            if (!active) return;
+            const waiting = navigator.serviceWorker.controller
+              ? registration.waiting
+              : null;
+            setWaitingWorker(waiting);
+            setUpdateReady(Boolean(waiting));
           };
           const watchInstall = () => {
             const worker = registration.installing;
@@ -143,6 +144,16 @@ export default function InstallApp() {
     }
   }
 
+  function applyUpdate() {
+    if (!waitingWorker) return;
+    navigator.serviceWorker.addEventListener(
+      "controllerchange",
+      () => window.location.reload(),
+      { once: true },
+    );
+    waitingWorker.postMessage({ type: "COQUI_ACTIVATE_UPDATE" });
+  }
+
   const status = offlineReady
     ? online
       ? "Ready for offline practice"
@@ -174,12 +185,20 @@ export default function InstallApp() {
           )}
           {updateReady && (
             <small>
-              An update is ready. Close all app windows and tabs, then reopen
-              when you’re finished playing.
+              A new version is ready, including the latest sound and lessons.
             </small>
           )}
         </span>
       </div>
+      {updateReady && (
+        <button
+          type="button"
+          className="install-app__button install-app__button--update"
+          onClick={applyUpdate}
+        >
+          Update now
+        </button>
+      )}
       {!installed && installPrompt && (
         <button
           type="button"

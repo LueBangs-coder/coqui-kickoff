@@ -204,6 +204,12 @@ img {
   background: #fff0e8;
   border-color: #d7aa96;
 }
+.sound-button.needs-start {
+  color: #183f2f;
+  background: var(--gold);
+  border-color: #9a7713;
+  box-shadow: 0 0 0 3px rgb(243 202 80 / 24%);
+}
 .hero-heading {
   display: flex;
   align-items: center;

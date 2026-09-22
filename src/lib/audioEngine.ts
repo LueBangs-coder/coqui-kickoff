@@ -116,13 +116,17 @@ export class CoquiAudioEngine {
     this.tone(1046.5, 0.24, 0.34, 0.075, 'sine')
   }
 
-  startMusic(): void {
+  async startMusic(): Promise<boolean> {
     this.musicActive = true
     const context = this.ensureContext()
-    if (!context || !this.master) return
+    if (!context || !this.master) return false
     this.loadRecordedMusic(context)
     this.startMusicSource(context)
     this.applyMix()
+    if (context.state === 'suspended') {
+      try { await context.resume() } catch { return false }
+    }
+    return context.state === 'running'
   }
 
   pauseMusic(): void {

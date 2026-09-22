@@ -1,0 +1,101 @@
+.pronunciation {
+  --voice-green: #173f31;
+  --voice-green-deep: #103326;
+  --voice-gold: #f1c66b;
+  --voice-border: #d9e1d6;
+  color: var(--voice-green);
+  border: 1px solid var(--voice-border);
+  border-radius: 18px;
+  padding: 20px;
+  background: #f7f9f1;
+  text-align: left;
+}
+.pronunciation__heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  margin-bottom: 13px;
+}
+.pronunciation__actions, .pronunciation__record-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+}
+.pronunciation button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  padding: 10px 15px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: background-color 150ms ease, box-shadow 150ms ease;
+}
+.pronunciation button:focus-visible, .pronunciation select:focus-visible, .pronunciation summary:focus-visible {
+  outline: 3px solid #a77b24;
+  outline-offset: 3px;
+}
+.pronunciation button:disabled { opacity: .55; cursor: not-allowed; }
+.pronunciation .pronunciation__listen { background: var(--voice-green); color: #fff; }
+.pronunciation .pronunciation__listen:hover:not(:disabled) { background: var(--voice-green-deep); }
+.pronunciation .pronunciation__slow { background: #f9e8bd; color: #483811; border-color: #ebd5a2; }
+.pronunciation .pronunciation__slow:hover:not(:disabled) { background: #f2ddab; }
+.pronunciation .pronunciation__stop, .pronunciation .pronunciation__clear {
+  color: var(--voice-green);
+  background: transparent;
+  padding-inline: 9px;
+}
+.pronunciation .pronunciation__stop:hover, .pronunciation .pronunciation__clear:hover { background: #e5eadf; }
+.pronunciation__note, .pronunciation__notice, .pronunciation__status {
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 11px 0 0;
+  color: #536255;
+}
+.pronunciation__notice { color: #704319; background: #fff0d7; padding: 10px 12px; border-radius: 8px; }
+.pronunciation__voice-settings { margin-top: 10px; font-size: 11px; color: #536255; }
+.pronunciation__voice-settings summary { cursor: pointer; display: inline-flex; align-items: center; gap: 5px; padding: 5px 0; list-style: none; }
+.pronunciation__voice-settings summary::-webkit-details-marker { display: none; }
+.pronunciation__voice-settings[open] summary svg { transform: rotate(180deg); }
+.pronunciation__voice-settings label { display: block; margin: 9px 0 5px; font-size: 12px; font-weight: 650; }
+.pronunciation__voice-settings select {
+  color: var(--voice-green);
+  font: inherit;
+  font-size: 12px;
+  background: #fff;
+  border: 1px solid #b8c8b9;
+  border-radius: 7px;
+  padding: 10px;
+  width: 100%;
+  min-height: 44px;
+}
+.pronunciation__voice-settings p { line-height: 1.6; margin: 8px 0 0; }
+.pronunciation__practice { border-top: 1px solid var(--voice-border); margin-top: 16px; padding-top: 16px; }
+.pronunciation__practice-title { display: flex; align-items: center; gap: 7px; font-size: 13px; }
+.pronunciation__practice-title span { margin-left: auto; font-size: 10px; color: #62705f; }
+.pronunciation__record-actions { margin-top: 12px; }
+.pronunciation .pronunciation__record { background: #fff; color: var(--voice-green); border-color: #bdcdbc; }
+.pronunciation .pronunciation__record:hover { background: #e7eddf; }
+.pronunciation .pronunciation__record--active { background: #ffe9df; border-color: #d79d85; color: #963c20; }
+.pronunciation audio { width: 100%; display: block; margin-top: 13px; height: 42px; }
+.pronunciation__sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; padding: 0; border: 0; margin: -1px; }
+.pronunciation--compact { padding: 0; border: 0; border-radius: 0; background: transparent; }
+.pronunciation--compact button { min-height: 44px; padding: 8px 12px; font-size: 12px; }
+.pronunciation--compact .pronunciation__voice-settings { margin-top: 3px; }
+@media (max-width: 480px) {
+  .pronunciation { padding: 16px; }
+  .pronunciation--compact { padding: 0; }
+  .pronunciation button { padding-inline: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pronunciation button { transition: none; }
+}

@@ -1,0 +1,389 @@
+{
+  "generatedAt": "2026-09-22T03:20:17.253969+00:00",
+  "voice": "es-PR-VictorNeural",
+  "voiceLabel": "Víctor",
+  "locale": "es-PR",
+  "synthetic": true,
+  "generator": "edge-tts 7.2.8",
+  "voiceMetadata": {
+    "Name": "Microsoft Server Speech Text to Speech Voice (es-PR, VictorNeural)",
+    "ShortName": "es-PR-VictorNeural",
+    "Gender": "Male",
+    "Locale": "es-PR",
+    "LocaleName": "Spanish (Puerto Rico)",
+    "SuggestedCodec": "audio-24khz-48kbitrate-mono-mp3",
+    "FriendlyName": "Microsoft Victor Online (Natural) - Spanish (Puerto Rico)",
+    "Status": "GA",
+    "VoiceTag": {
+      "ContentCategories": [
+        "General"
+      ],
+      "VoicePersonalities": [
+        "Friendly",
+        "Positive"
+      ]
+    }
+  },
+  "clips": [
+    {
+      "id": "hola",
+      "text": "¡Hola!",
+      "src": "/audio/hola.mp3",
+      "duration": 1.872,
+      "bytes": 11232,
+      "sha256": "0a71da978404ffb06e0cd90453e80e26940e5acf3695085e256ab7334f72acaa"
+    },
+    {
+      "id": "me-llamo",
+      "text": "Me llamo…",
+      "src": "/audio/me-llamo.mp3",
+      "duration": 1.872,
+      "bytes": 11232,
+      "sha256": "cef6e66eade122c47af4028ae10edd849e31e0f6bcec24cd68f1407fb1e3853e"
+    },
+    {
+      "id": "como-estas",
+      "text": "¿Cómo estás?",
+      "src": "/audio/como-estas.mp3",
+      "duration": 1.872,
+      "bytes": 11232,
+      "sha256": "9b884e805dc3fa4ed671fa6833b5716621e4f73fa62b7585e6e763f389112b09"
+    },
+    {
+      "id": "estoy-bien",
+      "text": "Estoy bien.",
+      "src": "/audio/estoy-bien.mp3",
+      "duration": 1.872,
+      "bytes": 11232,
+      "sha256": "4d2a6c8b162e0561537f9b5204ffec03fa63d039c9f23665d8e51321a5b9cdb2"
+    },
+    {
+      "id": "gracias",
+      "text": "Gracias.",
+      "src": "/audio/gracias.mp3",
+      "duration": 1.776,
+      "bytes": 10656,
+      "sha256": "d6262365d5539ee51d2dcb020892e3c2c4d2bb2c173cbdbca44ed4d08ac09e74"
+    },
+    {
+      "id": "mas-despacio",
+      "text": "Más despacio, por favor.",
+      "src": "/audio/mas-despacio.mp3",
+      "duration": 2.856,
+      "bytes": 17136,
+      "sha256": "2190aa5103ef27242642a1a241247b3d0e237b99777d4a1f98116b720f129ec2"
+    },
+    {
+      "id": "jugamos",
+      "text": "¿Jugamos?",
+      "src": "/audio/jugamos.mp3",
+      "duration": 1.872,
+      "bytes": 11232,
+      "sha256": "11714e94a9b48bb06604da87a014427558ac6f0e658c870aa8b2fe904f3085dc"
+    },
+    {
+      "id": "estoy-listo",
+      "text": "Estoy listo.",
+      "src": "/audio/estoy-listo.mp3",
+      "duration": 1.944,
+      "bytes": 11664,
+      "sha256": "891434ab0e55c0ebecc5e4114ffaa9926dd2a6e1c5b40373144f46cdac235e1b"
+    },
+    {
+      "id": "tu-turno",
+      "text": "Es tu turno.",
+      "src": "/audio/tu-turno.mp3",
+      "duration": 1.872,
+      "bytes": 11232,
+      "sha256": "b8e43ef1712b6c557607403e64e99bb83f49be5a78a6e48485c7fa1076c02479"
+    },
+    {
+      "id": "pasame-balon",
+      "text": "Pásame el balón.",
+      "src": "/audio/pasame-balon.mp3",
+      "duration": 2.016,
+      "bytes": 12096,
+      "sha256": "728632262e87005aacf5ea7940cce31581856edbd2328bcf4d61fafc17a4b3da"
+    },
+    {
+      "id": "vamos-equipo",
+      "text": "¡Vamos, equipo!",
+      "src": "/audio/vamos-equipo.mp3",
+      "duration": 2.4,
+      "bytes": 14400,
+      "sha256": "814860090efff9151d0ad95a741bc228343af087491817e95c59a4ee4308b14b"
+    },
+    {
+      "id": "buen-trabajo",
+      "text": "¡Buen trabajo!",
+      "src": "/audio/buen-trabajo.mp3",
+      "duration": 1.872,
+      "bytes": 11232,
+      "sha256": "75e883e8c6f11d8600cc6aefc6ed246999fd275d7b09ff847577766f788eb637"
+    },
+    {
+      "id": "mi-familia",
+      "text": "Esta es mi familia.",
+      "src": "/audio/mi-familia.mp3",
+      "duration": 2.256,
+      "bytes": 13536,
+      "sha256": "6fca7cf71ef9695d4902c9563dee767dfdf54eb99691198a536c95e4e3d21ed6"
+    },
+    {
+      "id": "mi-hermano",
+      "text": "Él es mi hermano.",
+      "src": "/audio/mi-hermano.mp3",
+      "duration": 2.064,
+      "bytes": 12384,
+      "sha256": "fbbdb4f4ccfb86ff7b6a9cfd660d84833f4c39383480d9949a7684251366d1db"
+    },
+    {
+      "id": "mi-hermana",
+      "text": "Ella es mi hermana.",
+      "src": "/audio/mi-hermana.mp3",
+      "duration": 2.16,
+      "bytes": 12960,
+      "sha256": "225cf07cdb18699e568e49232aea01926d66cd8bbccfcc0b0d3448c6b9eaa5fd"
+    },
+    {
+      "id": "de-puerto-rico",
+      "text": "Mi abuelo es de Puerto Rico.",
+      "src": "/audio/de-puerto-rico.mp3",
+      "duration": 2.64,
+      "bytes": 15840,
+      "sha256": "f06d0da0e9e238f5ad7d954540eb3da242975093194ff2a53bf13cca82a96a52"
+    },
+    {
+      "id": "como-te-llamas",
+      "text": "¿Cómo te llamas?",
+      "src": "/audio/como-te-llamas.mp3",
+      "duration": 2.016,
+      "bytes": 12096,
+      "sha256": "288b0f764d4480086a621fb15170b40956fdfe591ce756e141d1ee2fc8ce630e"
+    },
+    {
+      "id": "soy-boricua",
+      "text": "Soy boricua.",
+      "src": "/audio/soy-boricua.mp3",
+      "duration": 1.944,
+      "bytes": 11664,
+      "sha256": "98065a28c42601b2a98e8a1259f28ffd4dbfba4ada8565c6929dfba695e92d80"
+    },
+    {
+      "id": "tengo-hambre",
+      "text": "Tengo hambre.",
+      "src": "/audio/tengo-hambre.mp3",
+      "duration": 1.872,
+      "bytes": 11232,
+      "sha256": "9df0ccd337f1eae263ce2e5b3b0d851eb6e39fe453bddb81a3173a3bd4f78e6f"
+    },
+    {
+      "id": "quiero-agua",
+      "text": "Quiero agua, por favor.",
+      "src": "/audio/quiero-agua.mp3",
+      "duration": 2.664,
+      "bytes": 15984,
+      "sha256": "64e549e1842c443fee53018b0a584846c86a9f40128824c18010d797f8f2e391"
+    },
+    {
+      "id": "habichuelas",
+      "text": "Me gustan las habichuelas.",
+      "src": "/audio/habichuelas.mp3",
+      "duration": 2.568,
+      "bytes": 15408,
+      "sha256": "1239f918d0423cd78b1c962ebedfc52c7a618b9ecb1c308a991b9f5c6670b48b"
+    },
+    {
+      "id": "una-china",
+      "text": "Quiero una china.",
+      "src": "/audio/una-china.mp3",
+      "duration": 2.088,
+      "bytes": 12528,
+      "sha256": "47858917daa086d0deb090edd5c0046e753bd9e5b25db0a130979fb41a7a0a55"
+    },
+    {
+      "id": "esta-rico",
+      "text": "Está rico.",
+      "src": "/audio/esta-rico.mp3",
+      "duration": 1.872,
+      "bytes": 11232,
+      "sha256": "4fc5bd764b1840d86475d91242754e65bdcb4b736dfbd7d4e67e753cea120a5d"
+    },
+    {
+      "id": "quieres-compartir",
+      "text": "¿Quieres compartir?",
+      "src": "/audio/quieres-compartir.mp3",
+      "duration": 2.184,
+      "bytes": 13104,
+      "sha256": "17f7957abc984e1e1ce1c0d4eaff08ae75924665074b36182c7f3e659f79eec7"
+    },
+    {
+      "id": "donde-parque",
+      "text": "¿Dónde está el parque?",
+      "src": "/audio/donde-parque.mp3",
+      "duration": 2.136,
+      "bytes": 12816,
+      "sha256": "0b0b79f159a061dc4711c69c8337a051a1cebfd85ee63ebd05a7adfb2dc52142"
+    },
+    {
+      "id": "sigue-derecho",
+      "text": "Sigue derecho.",
+      "src": "/audio/sigue-derecho.mp3",
+      "duration": 2.016,
+      "bytes": 12096,
+      "sha256": "7da68bd8f9845970558f920b196a09d4e4ce94d7dad93f6eb7bd75ce0f242980"
+    },
+    {
+      "id": "dobla-derecha",
+      "text": "Dobla a la derecha.",
+      "src": "/audio/dobla-derecha.mp3",
+      "duration": 2.16,
+      "bytes": 12960,
+      "sha256": "7b61cc08847d5db27fd8bb7ed7c441407caa8b61b01419d01713c4de0ae0f4b5"
+    },
+    {
+      "id": "dobla-izquierda",
+      "text": "Dobla a la izquierda.",
+      "src": "/audio/dobla-izquierda.mp3",
+      "duration": 2.256,
+      "bytes": 13536,
+      "sha256": "d6d38413f3e351c67387ab29453e90a54e4c79f3ba14e2bd076cd705a49da6e6"
+    },
+    {
+      "id": "parada-guaguas",
+      "text": "¿Dónde está la parada de guaguas?",
+      "src": "/audio/parada-guaguas.mp3",
+      "duration": 2.808,
+      "bytes": 16848,
+      "sha256": "5cbb5f6833f12269c10500b2396185540231986220bcdcb114963d9e9b7ce700"
+    },
+    {
+      "id": "estamos-cerca",
+      "text": "Estamos cerca.",
+      "src": "/audio/estamos-cerca.mp3",
+      "duration": 1.968,
+      "bytes": 11808,
+      "sha256": "a6d2f5b7551327d822748d3d69714dce733286c1b243ef70e9d451c655765150"
+    },
+    {
+      "id": "corre-adelante",
+      "text": "Corre hacia adelante.",
+      "src": "/audio/corre-adelante.mp3",
+      "duration": 2.208,
+      "bytes": 13248,
+      "sha256": "63f6faee047df376582654bdb600ce2bc8fe5c8a83ce3ae0ae383bd4a6a0d5d9"
+    },
+    {
+      "id": "mira-izquierda",
+      "text": "Mira a tu izquierda.",
+      "src": "/audio/mira-izquierda.mp3",
+      "duration": 2.232,
+      "bytes": 13392,
+      "sha256": "9af5404d9c4c49ae655ff86f523acd425d1bdc85fc6d3bf3ca784d67f2982fab"
+    },
+    {
+      "id": "lanza-balon",
+      "text": "Lanza el balón.",
+      "src": "/audio/lanza-balon.mp3",
+      "duration": 2.016,
+      "bytes": 12096,
+      "sha256": "487400fb0ad8377d3464f6ee2a78d6d4087f7be6d7a7bfa97d10ccd7a6a87e54"
+    },
+    {
+      "id": "atrapa-balon",
+      "text": "Atrapa el balón.",
+      "src": "/audio/atrapa-balon.mp3",
+      "duration": 2.088,
+      "bytes": 12528,
+      "sha256": "b48c4c64dafd7940781af06219374008b17d052799793cbb5d9cb553098b0b8d"
+    },
+    {
+      "id": "una-vez-mas",
+      "text": "Una vez más.",
+      "src": "/audio/una-vez-mas.mp3",
+      "duration": 1.944,
+      "bytes": 11664,
+      "sha256": "d925695544ccbff7303d378767ccdd8a7e14a28c118a426e99a5d75f68b028eb"
+    },
+    {
+      "id": "podemos-hacerlo",
+      "text": "Podemos hacerlo.",
+      "src": "/audio/podemos-hacerlo.mp3",
+      "duration": 2.016,
+      "bytes": 12096,
+      "sha256": "aca81d6caba4e205731ff15e93e0566754ea4f91c70c11f811e1af34b993b853"
+    },
+    {
+      "id": "hoy-juega",
+      "text": "Hoy juega mi equipo.",
+      "src": "/audio/hoy-juega.mp3",
+      "duration": 2.256,
+      "bytes": 13536,
+      "sha256": "ed96d5394195039ec006d097181db19481cf4de3b1bac1e2f7289a6458c08bc4"
+    },
+    {
+      "id": "contra-giants",
+      "text": "Jugamos contra los Gigantes.",
+      "src": "/audio/contra-giants.mp3",
+      "duration": 2.808,
+      "bytes": 16848,
+      "sha256": "88cec04d217ad3ee328283c92cb5ddc1be48489171637edfb0a0c9be527fb4f1"
+    },
+    {
+      "id": "cuantos-puntos",
+      "text": "¿Cuántos puntos tenemos?",
+      "src": "/audio/cuantos-puntos.mp3",
+      "duration": 2.496,
+      "bytes": 14976,
+      "sha256": "8465f31d34664728c6370ae451346431e46d87b75dee7d797770c53ef8eb75f0"
+    },
+    {
+      "id": "no-te-rindas",
+      "text": "No te rindas.",
+      "src": "/audio/no-te-rindas.mp3",
+      "duration": 1.992,
+      "bytes": 11952,
+      "sha256": "17484c25de5ce926fa8dbf56c9a9904ad7b904e91c84c587c0b265a2f99fd7f6"
+    },
+    {
+      "id": "ganamos-juntos",
+      "text": "Ganamos juntos.",
+      "src": "/audio/ganamos-juntos.mp3",
+      "duration": 2.184,
+      "bytes": 13104,
+      "sha256": "c2cdbe999536d4e6a70dc7b365313230a94840c4c73d969d4016d5faa35ac2e7"
+    },
+    {
+      "id": "jugamos-otra-vez",
+      "text": "¿Jugamos otra vez?",
+      "src": "/audio/jugamos-otra-vez.mp3",
+      "duration": 2.304,
+      "bytes": 13824,
+      "sha256": "de8546ca9ab136ffd6ccbec4bd0c392f617b09e1df6417b29b4ea9e34e667198"
+    },
+    {
+      "id": "greeting-combined",
+      "text": "¡Hola! ¿Cómo estás?",
+      "src": "/audio/greeting-combined.mp3",
+      "duration": 3.168,
+      "bytes": 19008,
+      "sha256": "78635f22407b441a7eda8f8afe99907c50d8ddb01a0213420ee0ac54e950a2a1"
+    },
+    {
+      "id": "vowel-sample",
+      "text": "a, e, i, o, u",
+      "src": "/audio/vowel-sample.mp3",
+      "duration": 3.096,
+      "bytes": 18576,
+      "sha256": "fd4418ff5de47fdfb9cbe0c8d235b80f7cbd385616c458864c0ee8c52bb76f86"
+    },
+    {
+      "id": "no-entiendo",
+      "text": "No entiendo.",
+      "src": "/audio/no-entiendo.mp3",
+      "duration": 1.872,
+      "bytes": 11232,
+      "sha256": "31d8d2337d1ebb37c12a3e48f8b902362de1e641d1befa0d9120b3e774e1b955"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+.install-app {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  width: min(1400px, calc(100% - 64px));
+  margin: 18px auto 0;
+  border: 1px solid #cdd8c9;
+  border-radius: 10px;
+  background: #edf1e7;
+  padding: 15px 18px;
+  color: #244b36;
+}
+.install-app__status {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1 1 250px;
+}
+.install-app__status > svg {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.install-app__status strong {
+  display: block;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.install-app__status small {
+  display: block;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #536454;
+  margin-top: 2px;
+  max-width: 640px;
+}
+.install-app__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  border: 1px solid #b6c7ae;
+  border-radius: 6px;
+  padding: 9px 13px;
+  background: #fafbf6;
+  color: #244b36;
+  font-size: 12px;
+  font-weight: 700;
+}
+.install-app__button:hover:not(:disabled) {
+  background: #fff;
+}
+.install-app__button:focus-visible,
+.install-app summary:focus-visible {
+  outline: 3px solid #197db1;
+  outline-offset: 4px;
+}
+.install-app__ios {
+  font-size: 12px;
+  max-width: 360px;
+}
+.install-app__ios summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.install-app__ios p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #405743;
+}
+.install-app__message {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+@media (max-width: 1200px) {
+  .install-app {
+    width: calc(100% - 48px);
+  }
+}
+@media (max-width: 650px) {
+  .install-app {
+    width: calc(100% - 32px);
+    padding: 14px;
+    gap: 10px;
+  }
+  .install-app__button {
+    width: 100%;
+  }
+  .install-app__ios {
+    max-width: none;
+    width: 100%;
+  }
+  .install-app__status strong {
+    font-size: 12px;
+  }
+}

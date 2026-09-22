@@ -45,6 +45,10 @@ class FakeContext {
   createBufferSource = () => { const node = new FakeNode(); FakeContext.sources.push(node); return node }
   createOscillator = this.createBufferSource
 }
+class BlockedContext extends FakeContext {
+  state = 'suspended'
+  resume = vi.fn().mockRejectedValue(new Error('autoplay blocked'))
+}
 function audioBrowser() {
   const events = new EventTarget()
   const data = new Map<string, string>()
@@ -65,6 +69,13 @@ function audioBrowser() {
 afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals() })
 
 describe('stadium audio lifecycle', () => {
+  it('reports when the browser blocks audible autoplay', async () => {
+    audioBrowser()
+    ;(window as unknown as { AudioContext: typeof FakeContext }).AudioContext = BlockedContext
+    const engine = new CoquiAudioEngine()
+    await expect(engine.startMusic()).resolves.toBe(false)
+  })
+
   it('keeps the app soundtrack playing when stadium effects stop', () => {
     audioBrowser()
     const engine = new CoquiAudioEngine()

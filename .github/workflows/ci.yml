@@ -1,10 +1,21 @@
 name: Validate
-on: [push, pull_request]
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: coqui-kickoff-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
 permissions:
   contents: read
+
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -13,3 +24,31 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
+      - uses: actions/upload-artifact@v4
+        with:
+          name: production-dist
+          path: dist
+          if-no-files-found: error
+          retention-days: 7
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      deployments: write
+    environment: production
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: production-dist
+          path: dist
+      - name: Deploy verified build to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=coqui-kickoff --branch=main
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

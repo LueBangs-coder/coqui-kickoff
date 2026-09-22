@@ -82,6 +82,7 @@ export default function App() {
   const [notice, setNotice] = useState("");
   const [gameLoading, setGameLoading] = useState(false);
   const [audioSettings, setAudioSettings] = useState<AudioSettings>(loadAudioSettings);
+  const [soundNeedsGesture, setSoundNeedsGesture] = useState(false);
   const launching = useRef(false);
   const team = TEAMS.find((t) => t.id === progress.teamId) ?? TEAMS[0];
   const opponent = getOpponent(team, progress.opponentId);
@@ -94,14 +95,22 @@ export default function App() {
     setSaved(saveProgress(progress));
   }, [progress]);
   useEffect(() => {
-    const onAudioSettings = (event: Event) =>
-      setAudioSettings((event as CustomEvent<AudioSettings>).detail);
+    const onAudioSettings = (event: Event) => {
+      const settings = (event as CustomEvent<AudioSettings>).detail;
+      setAudioSettings(settings);
+      if (settings.muted) setSoundNeedsGesture(false);
+      else void coquiAudio.startMusic().then(playing => setSoundNeedsGesture(!playing));
+    };
     window.addEventListener(AUDIO_SETTINGS_EVENT, onAudioSettings);
     return () => window.removeEventListener(AUDIO_SETTINGS_EVENT, onAudioSettings);
   }, []);
   useEffect(() => {
+    let active = true;
     const startSoundtrack = () => {
-      if (!loadAudioSettings().muted) coquiAudio.startMusic();
+      if (loadAudioSettings().muted) return;
+      void coquiAudio.startMusic().then(playing => {
+        if (active) setSoundNeedsGesture(!playing);
+      });
     };
     const followVisibility = () => {
       if (document.hidden) coquiAudio.pauseMusic();
@@ -114,6 +123,7 @@ export default function App() {
     window.addEventListener("keydown", startSoundtrack, true);
     document.addEventListener("visibilitychange", followVisibility);
     return () => {
+      active = false;
       window.removeEventListener("pointerdown", startSoundtrack, true);
       window.removeEventListener("keydown", startSoundtrack, true);
       document.removeEventListener("visibilitychange", followVisibility);
@@ -121,10 +131,15 @@ export default function App() {
     };
   }, []);
   function toggleAudio() {
+    if (soundNeedsGesture && !audioSettings.muted) {
+      void coquiAudio.startMusic().then(playing => setSoundNeedsGesture(!playing));
+      return;
+    }
     const next = saveAudioSettings({ ...audioSettings, muted: !audioSettings.muted });
     setAudioSettings(next);
     coquiAudio.applyMix();
-    if (!next.muted) coquiAudio.startMusic();
+    if (next.muted) setSoundNeedsGesture(false);
+    else void coquiAudio.startMusic().then(playing => setSoundNeedsGesture(!playing));
   }
   function navigate(next: Page) {
     setPage(next);
@@ -215,13 +230,13 @@ export default function App() {
           </nav>
           <Flag />
           <button
-            className="about-button sound-button"
-            aria-label={audioSettings.muted ? "Sound is off. Turn app sound on" : "Sound is on. Turn app sound off"}
+            className={`about-button sound-button${soundNeedsGesture ? " needs-start" : ""}`}
+            aria-label={audioSettings.muted ? "Sound is off. Turn app sound on" : soundNeedsGesture ? "Sound is ready. Tap to start audio" : "Sound is on. Turn app sound off"}
             aria-pressed={!audioSettings.muted}
             onClick={toggleAudio}
           >
             {audioSettings.muted ? <VolumeX size={21} /> : <Volume2 size={21} />}
-            <span><small>SOUND</small><strong>{audioSettings.muted ? "OFF" : "ON"}</strong></span>
+            <span><small>SOUND</small><strong>{audioSettings.muted ? "OFF" : soundNeedsGesture ? "TAP" : "ON"}</strong></span>
           </button>
           <button
             className="about-button"

@@ -52,6 +52,11 @@
 .install-app__button:hover:not(:disabled) {
   background: #fff;
 }
+.install-app__button--update {
+  border-color: #9a7713;
+  background: #f3ca50;
+  color: #173f2f;
+}
 .install-app__button:focus-visible,
 .install-app summary:focus-visible {
   outline: 3px solid #197db1;

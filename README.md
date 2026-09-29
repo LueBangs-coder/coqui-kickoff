@@ -40,7 +40,7 @@ No account, backend database, advertising or analytics. Progress is browser-loca
 
 Browser progress belongs to the address where it was saved and does not automatically transfer between deployments or devices.
 
-Best use: open the deployed HTTPS link on your phone. Use the install control on supported Android browsers, or Share → Add to Home Screen in iPhone Safari. Wait for 'Ready for offline practice' before disconnecting: lessons, audio, and the football game are cached for offline use. Browser storage eviction can require another online visit. The optional celebration clip is excluded from the initial offline download. Tap audio buttons directly on iPhone/iPad. Actual speaker output, home-screen installation, and microphone permission should be checked on that device.
+Best use: open the deployed HTTPS link on your phone. Use the install control on supported Android browsers, or Share → Add to Home Screen in iPhone Safari. Wait for 'Ready for offline practice' before disconnecting: lessons, audio, and the football game are cached for offline use. The app replaces legacy offline builds that cannot show its update control; later builds wait for the learner to choose **Update now** so an active lesson or game is not interrupted. Browser storage eviction can require another online visit. The optional celebration clip is excluded from the initial offline download. Tap audio buttons directly on iPhone/iPad. Actual speaker output, home-screen installation, and microphone permission should be checked on that device.
 
 ## Game audio and scoreboard
 

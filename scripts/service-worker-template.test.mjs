@@ -2,16 +2,27 @@ import vm from "node:vm";
 import { describe, expect, it, vi } from "vitest";
 import { renderServiceWorker } from "./service-worker-template.mjs";
 
-function workerHarness(cacheNames) {
+function workerHarness(cacheNames, markerAwareCaches = []) {
   const listeners = new Map();
   const windowClient = {
     url: "https://coqui-kickoff.pages.dev/",
     navigate: vi.fn().mockResolvedValue(undefined),
     postMessage: vi.fn(),
   };
-  const cache = {
-    addAll: vi.fn().mockResolvedValue(undefined),
-    match: vi.fn().mockResolvedValue(undefined),
+  const openedCaches = new Map();
+  const cacheFor = (name) => {
+    if (!openedCaches.has(name)) {
+      openedCaches.set(name, {
+        addAll: vi.fn().mockResolvedValue(undefined),
+        put: vi.fn().mockResolvedValue(undefined),
+        match: vi.fn(async request =>
+          markerAwareCaches.includes(name) && request === "/__coqui-update-ui-v1"
+            ? new Response("ready")
+            : undefined,
+        ),
+      });
+    }
+    return openedCaches.get(name);
   };
   const self = {
     addEventListener: (name, listener) => listeners.set(name, listener),
@@ -23,7 +34,7 @@ function workerHarness(cacheNames) {
     location: { origin: "https://coqui-kickoff.pages.dev" },
   };
   const caches = {
-    open: vi.fn().mockResolvedValue(cache),
+    open: vi.fn(async name => cacheFor(name)),
     keys: vi.fn().mockResolvedValue(cacheNames),
     delete: vi.fn().mockResolvedValue(true),
     has: vi.fn().mockResolvedValue(true),
@@ -48,12 +59,12 @@ function workerHarness(cacheNames) {
     await work;
   }
 
-  return { fire, self, caches, windowClient };
+  return { fire, self, caches, windowClient, openedCaches };
 }
 
 describe("service-worker updates", () => {
-  it("replaces the known stale audio build and reloads its open client", async () => {
-    const harness = workerHarness(["coqui-kickoff-static-legacy-version"]);
+  it("replaces any legacy build that cannot present the update control", async () => {
+    const harness = workerHarness(["coqui-kickoff-static-unknown-legacy"]);
     await harness.fire("install");
     expect(harness.self.skipWaiting).toHaveBeenCalledOnce();
 
@@ -64,12 +75,21 @@ describe("service-worker updates", () => {
     );
   });
 
-  it("keeps future versions waiting unless the learner chooses to update", async () => {
-    const harness = workerHarness(["coqui-kickoff-static-current-version"]);
+  it("marks this build as update-aware and lets future versions wait", async () => {
+    const current = "coqui-kickoff-static-current-version";
+    const harness = workerHarness([current], [current]);
     await harness.fire("install");
     expect(harness.self.skipWaiting).not.toHaveBeenCalled();
+    expect(harness.openedCaches.get("coqui-kickoff-static-next-version").put)
+      .toHaveBeenCalledWith("/__coqui-update-ui-v1", expect.any(Response));
 
     await harness.fire("message", { data: { type: "COQUI_ACTIVATE_UPDATE" } });
     expect(harness.self.skipWaiting).toHaveBeenCalledOnce();
+  });
+
+  it("does not force a refresh on a first install", async () => {
+    const harness = workerHarness([]);
+    await harness.fire("install");
+    expect(harness.self.skipWaiting).not.toHaveBeenCalled();
   });
 });

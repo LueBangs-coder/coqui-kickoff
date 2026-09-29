@@ -2,10 +2,7 @@ import { createHash } from "node:crypto";
 import { readdir, readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import {
-  FORCE_UPDATE_FROM,
-  renderServiceWorker,
-} from "./service-worker-template.mjs";
+import { renderServiceWorker } from "./service-worker-template.mjs";
 
 const projectRoot = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -81,7 +78,6 @@ const version = digest.digest("hex").slice(0, 16);
 const worker = renderServiceWorker({
   version,
   urls,
-  forceUpdateFrom: FORCE_UPDATE_FROM,
 });
 
 await writeFile(path.join(outputDirectory, "sw.js"), worker, "utf8");
